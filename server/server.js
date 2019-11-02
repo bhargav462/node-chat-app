@@ -13,10 +13,21 @@ var io = socketIO(server);
 app.set('view engine','hbs');
 app.use(express.static(publicPath));
 
+
 io.on('connection',(socket) => {
     console.log('New user connection');
 
-    socket.on('disconnect',() => {
+    socket.emit('newMessage',{
+        from:"server@gmail.com",
+        text:"Hi! from server",
+        createdAt:new Date().getTime()
+    });
+
+    socket.on('createMessage',function(createMessage){
+       console.log('createMessage',createMessage);
+    });
+
+    socket.on('disconnect',function(){
         console.log('User was Disconnected');
     })
 });
