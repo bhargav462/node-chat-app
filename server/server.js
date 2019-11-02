@@ -17,14 +17,14 @@ app.use(express.static(publicPath));
 io.on('connection',(socket) => {
     console.log('New user connection');
 
-    socket.emit('newMessage',{
-        from:"server@gmail.com",
-        text:"Hi! from server",
-        createdAt:new Date().getTime()
-    });
-
     socket.on('createMessage',function(createMessage){
        console.log('createMessage',createMessage);
+       io.emit('newMessage',{
+           from:createMessage.from,
+           text:createMessage.text,
+           createAt: new Date().getTime()
+       });
+
     });
 
     socket.on('disconnect',function(){
