@@ -27,9 +27,10 @@ describe('generateLocationMessage',() => {
         var message = generateLocationMessage(from,lat,long);
 
         expect(message).toInclude({
-            from,url
+            from,
+            url:'https://www.google.com/maps?q=1,1'
         });
         expect(message.createdAt).toBeA('number');
-        expect(message.url).toBe('https://www.google.com/maps?q=1,1');
+       expect(message.url).toBe('https://www.google.com/maps?q=1,1');
     });
 })
