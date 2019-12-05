@@ -38,9 +38,7 @@ io.on('connection',(socket) => {
     })
 });
 
-// app.post('/',(req,res) => {
-//  res.render('index.html');
-// });
+
 
 server.listen(port,() =>{
     console.log(`server is up on port ${port}`);
